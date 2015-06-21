@@ -87,7 +87,7 @@ class Report(object):
         all the handlers of this report to handle the record.
         """
         # exc_info=None, extra=None
-        self.entries += Entry(level, msg, *args, **kwargs)
+        self.entries.append(Entry(level, msg, *args, **kwargs))
 
 
 class Entry(object):
