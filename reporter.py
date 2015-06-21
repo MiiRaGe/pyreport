@@ -17,8 +17,8 @@ class Report(object):
     def finalize_report(self):
         html_page = StringIO()
         for entry in self.entries:
-            html_page += entry.render_as_html()
-        return html_page
+            html_page.write(entry.render_as_html())
+        return str(html_page)
 
     def debug(self, msg, *args, **kwargs):
         """
