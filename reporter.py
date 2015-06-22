@@ -18,7 +18,7 @@ class Report(object):
         html_page = StringIO()
         for entry in self.entries:
             html_page.write(entry.render_as_html())
-        return html_page.get_value()
+        return html_page.getvalue()
 
     def debug(self, msg, *args, **kwargs):
         """
