@@ -1,4 +1,5 @@
 from StringIO import StringIO
+from datetime import datetime
 
 DEBUG = 'debug'
 CRITICAL = 'critical'
@@ -10,10 +11,10 @@ EXCEPTION = 'exception'
 
 class Report(object):
     entries = []
-    
+
     def create_report(self):
         self.entries = []
-    
+
     def finalize_report(self):
         html_page = StringIO()
         for entry in self.entries:
@@ -80,7 +81,7 @@ class Report(object):
         report.critical("Houston, we have a %s", "major disaster", exc_info=1)
         """
         self.add_report_entry(CRITICAL, msg, *args, **kwargs)
-    
+
     def add_report_entry(self, level, msg, *args, **kwargs):
         """
         Low-level reporting routine which creates a LogRecord and then calls
@@ -101,6 +102,8 @@ class Entry(object):
         self.msg = msg
         self.args = args
         self.kwargs = kwargs
+        self.date = datetime.now()
 
     def render_as_html(self):
-        return '<p class="%s">%s</p>' % (self.level, self.msg)
+        return '<p class="%s"><span class="time">%s:%s:%s.%s</span> - %s</p>' % (
+        self.level, self.date.hour, self.date.minute, self.date.second, self.date.microsecond, self.msg)
