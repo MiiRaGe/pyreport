@@ -19,6 +19,7 @@ class Report(object):
         html_page = unicode()
         for entry in self.entries:
             html_page += entry.render_as_html()
+        self.entries = []
         return html_page
 
     def debug(self, msg, *args, **kwargs):
