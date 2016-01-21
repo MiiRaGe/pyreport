@@ -108,4 +108,4 @@ class Entry(object):
     def render_as_html(self):
         return u'<p class="%s"><span class="time">%s:%s:%s.%s</span> - %s</p>' % (
             self.level, self.date.hour, self.date.minute, self.date.second, self.date.microsecond,
-            self.msg.decode('utf-8'))
+            self.msg)
